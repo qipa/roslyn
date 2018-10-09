@@ -638,10 +638,11 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_1() As Task
-            Using state = TestState.CreateTestStateFromWorkspace(
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_1(completionImplementation As CompletionImplementation) As Task
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted.Assembly.Name"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -658,10 +659,11 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_2() As Task
-            Using state = TestState.CreateTestStateFromWorkspace(
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_2(completionImplementation As CompletionImplementation) As Task
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted.Assembly.Name"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -678,10 +680,11 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_3() As Task
-            Using state = TestState.CreateTestStateFromWorkspace(
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_3(completionImplementation As CompletionImplementation) As Task
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted.Assembly.Name"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -698,9 +701,10 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_4() As Task
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_4(completionImplementation As CompletionImplementation) As Task
             Using state = TestState.CreateTestStateFromWorkspace(
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
@@ -718,10 +722,11 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_Verbatim_1() As Task
-            Using state = TestState.CreateTestStateFromWorkspace(
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_Verbatim_1(completionImplementation As CompletionImplementation) As Task
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -738,10 +743,11 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_Verbatim_2() As Task
-            Using state = TestState.CreateTestStateFromWorkspace(
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_Verbatim_2(completionImplementation As CompletionImplementation) As Task
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -758,14 +764,15 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_EscapeSequence_1() As Task
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_EscapeSequence_1(completionImplementation As CompletionImplementation) As Task
             ' Escaped double quotes are not handled properly: The selection is expanded from the cursor position until
             ' a double quote or new line is reached. But because double quotes are not allowed in this context this 
             ' case is rare enough to ignore. Supporting it would require more complicated code that was reverted in
             ' https://github.com/dotnet/roslyn/pull/29447/commits/e7a852a7e83fffe1f25a8dee0aaec68f67fcc1d8
-            Using state = TestState.CreateTestStateFromWorkspace(
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -782,10 +789,11 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_OpenEnded() As Task
-            Using state = TestState.CreateTestStateFromWorkspace(
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_OpenEnded(completionImplementation As CompletionImplementation) As Task
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -802,10 +810,11 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_AndPublicKey_OpenEnded() As Task
-            Using state = TestState.CreateTestStateFromWorkspace(
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_AndPublicKey_OpenEnded(completionImplementation As CompletionImplementation) As Task
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -822,11 +831,12 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_AndPublicKey_LineBreakExampleFromMSDN() As Task
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_AndPublicKey_LineBreakExampleFromMSDN(completionImplementation As CompletionImplementation) As Task
             ' Source https://msdn.microsoft.com/de-de/library/system.runtime.compilerservices.internalsvisibletoattribute(v=vs.110).aspx
-            Using state = TestState.CreateTestStateFromWorkspace(
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -853,11 +863,12 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_OpenEndedStringFollowedByEOF() As Task
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_OpenEndedStringFollowedByEOF(completionImplementation As CompletionImplementation) As Task
             ' Source https://msdn.microsoft.com/de-de/library/system.runtime.compilerservices.internalsvisibletoattribute(v=vs.110).aspx
-            Using state = TestState.CreateTestStateFromWorkspace(
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">
@@ -873,11 +884,12 @@ using System.Reflection;
             End Using
         End Function
 
-        <WpfFact, Trait(Traits.Feature, Traits.Features.Completion)>
+        <MemberData(NameOf(AllCompletionImplementations))>
+        <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
         <WorkItem(29447, "https://github.com/dotnet/roslyn/pull/29447")>
-        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_OpenEndedStringFollowedByNewLines() As Task
+        Public Async Function CodeCompletionReplacesExisitingAssemblyNameWithDots_OpenEndedStringFollowedByNewLines(completionImplementation As CompletionImplementation) As Task
             ' Source https://msdn.microsoft.com/de-de/library/system.runtime.compilerservices.internalsvisibletoattribute(v=vs.110).aspx
-            Using state = TestState.CreateTestStateFromWorkspace(
+            Using state = TestStateFactory.CreateTestStateFromWorkspace(completionImplementation,
                 <Workspace>
                     <Project Language="C#" AssemblyName="Dotted1.Dotted2.Assembly.Dotted3"/>
                     <Project Language="C#" CommonReferences="true" AssemblyName="TestAssembly">

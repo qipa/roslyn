@@ -364,18 +364,13 @@ namespace Microsoft.VisualStudio.LanguageServices.Implementation.DebuggerIntelli
             }
         }
 
-        public void QueuePostLayoutAction(Action action)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetTextViewLines(out ITextViewLineCollection textViewLines)
-        {
-            throw new NotImplementedException();
-        }
+        public void QueuePostLayoutAction(Action action) => _innerTextView.QueuePostLayoutAction(action);
+        
+        public bool TryGetTextViewLines(out ITextViewLineCollection textViewLines) => _innerTextView.TryGetTextViewLines(out textViewLines);
 
         public bool TryGetTextViewLineContainingBufferPosition(SnapshotPoint bufferPosition, out ITextViewLine textViewLine)
         {
+            // TODO can be changed to _inner.TryGetTextViewLineContainingBufferPosition(bufferPosition, out textViewLine); when TextViewExtensions would provide the correct signature for it.
             textViewLine = GetTextViewLineContainingBufferPosition(bufferPosition);
             return true;
         }
