@@ -370,9 +370,17 @@ namespace Microsoft.VisualStudio.LanguageServices.Implementation.DebuggerIntelli
 
         public bool TryGetTextViewLineContainingBufferPosition(SnapshotPoint bufferPosition, out ITextViewLine textViewLine)
         {
-            // TODO can be changed to _inner.TryGetTextViewLineContainingBufferPosition(bufferPosition, out textViewLine); when TextViewExtensions would provide the correct signature for it.
-            textViewLine = GetTextViewLineContainingBufferPosition(bufferPosition);
-            return true;
+            // This implementation confirms with the Editor implementation.
+            try
+            {
+                textViewLine = this.GetTextViewLineContainingBufferPosition(bufferPosition);
+                return textViewLine != null;
+            }
+            catch
+            {
+                textViewLine = null;
+                return false;
+            }
         }
 
         private event EventHandler ClosedInternal;

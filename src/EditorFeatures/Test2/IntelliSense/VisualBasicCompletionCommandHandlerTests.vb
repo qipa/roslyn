@@ -1878,6 +1878,8 @@ End Module</Document>)
             End Using
         End Function
 
+        ' The test verifies the CommitCommandHandler isolated behavior which does not add '()' after 'Main'.
+        ' The integrated VS behavior for the case is to get 'Main()'.
         <WorkItem(792569, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/792569")>
         <MemberData(NameOf(AllCompletionImplementations))>
         <WpfTheory, Trait(Traits.Feature, Traits.Features.Completion)>
