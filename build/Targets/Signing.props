@@ -24,7 +24,7 @@
     <FileSignInfo Include="Microsoft.CodeAnalysis.VisualBasic.ExpressionEvaluator.ResultProvider.dll" PublicKeyToken="31bf3856ad364e35" TargetFramework=".NETFramework,Version=v2.0" CertificateName="MicrosoftSHA1Win8WinBlue"/>
 
     <!-- Sign 3rd party dlls with 3rd party cert -->
-    <FileSignInfo Inlcude="ICSharpCode.Decompiler.dll" CertificateName="3PartySHA2" />
+    <FileSignInfo Include="ICSharpCode.Decompiler.dll" CertificateName="3PartySHA2" />
     <FileSignInfo Include="e_sqlite3.dll" CertificateName="3PartySHA2" />
     <FileSignInfo Include="SQLitePCLRaw.core.dll" CertificateName="3PartySHA2" />
     <FileSignInfo Include="SQLitePCLRaw.batteries_v2.dll" CertificateName="3PartySHA2" />
