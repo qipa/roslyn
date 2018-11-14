@@ -76,6 +76,9 @@ Namespace Microsoft.CodeAnalysis.VisualBasic.Classification.Classifiers
             ByRef classifiedSpan As ClassifiedSpan) As Boolean
 
             Select Case symbol.Kind
+                Case SymbolKind.Namespace
+                    classifiedSpan = New ClassifiedSpan(GetNameToken(node).Span, ClassificationTypeNames.NamespaceName)
+                    Return True
                 Case SymbolKind.Method
                     Dim classification = GetClassificationForMethod(node, DirectCast(symbol, IMethodSymbol))
                     If classification IsNot Nothing Then

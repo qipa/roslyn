@@ -41,6 +41,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Classification.Classifiers
 
             var _ =
                 TryClassifySymbol(name, symbolInfo, semanticModel, result, cancellationToken) ||
+                TryClassifyAsNamespace(name, symbolInfo, result) ||
                 TryClassifyFromIdentifier(name, symbolInfo, result) ||
                 TryClassifyValueIdentifier(name, symbolInfo, result) ||
                 TryClassifyNameOfIdentifier(name, symbolInfo, result);
@@ -127,6 +128,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Classification.Classifiers
             CancellationToken cancellationToken,
             out ClassifiedSpan classifiedSpan)
         {
+            if (symbol.IsNamespace())
+            {
+                classifiedSpan = new ClassifiedSpan(name.Span, ClassificationTypeNames.NamespaceName);
+                return true;
+            }
+
             // Classify a reference to an attribute constructor in an attribute location
             // as if we were classifying the attribute type itself.
             if (symbol.IsConstructor() && name.IsParentKind(SyntaxKind.Attribute))
@@ -306,6 +313,33 @@ namespace Microsoft.CodeAnalysis.CSharp.Classification.Classifiers
             }
 
             return symbolInfo.Symbol;
+        }
+
+        private bool TryClassifyAsNamespace(
+            NameSyntax name,
+            SymbolInfo symbolInfo,
+            ArrayBuilder<ClassifiedSpan> result)
+        {
+            if (symbolInfo.Symbol != null
+                && IsNamespaceName(name))
+            {
+                result.Add(new ClassifiedSpan(name.Span, ClassificationTypeNames.NamespaceName));
+                return true;
+            }
+
+            return false;
+        }
+
+        private static bool IsNamespaceName(NameSyntax name)
+        {
+            while (name.Parent is NameSyntax)
+            {
+                name = (NameSyntax)name.Parent;
+            }
+
+            return name.IsParentKind(SyntaxKind.NamespaceDeclaration)
+                || name.IsParentKind(SyntaxKind.UsingDirective)
+                || name.IsParentKind(SyntaxKind.SimpleMemberAccessExpression);
         }
 
         private bool TryClassifyFromIdentifier(
