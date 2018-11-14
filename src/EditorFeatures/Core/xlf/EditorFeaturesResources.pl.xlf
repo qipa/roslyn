@@ -55,8 +55,10 @@
       <trans-unit id="Operator_Overload">
         <source>Operator - Overload</source>
         <target state="new">Operator - Overload</target>
+        <note />
       </trans-unit>
       <trans-unit id="Keyword_Control">
+        <source>Keyword - Control</source>
         <target state="new">Keyword - Control</target>
         <note />
       </trans-unit>
@@ -78,6 +80,11 @@
       <trans-unit id="String_Escape_Character">
         <source>String - Escape Character</source>
         <target state="new">String - Escape Character</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="Symbol_Static">
+        <source>Symbol - Static</source>
+        <target state="new">Symbol - Static</target>
         <note />
       </trans-unit>
       <trans-unit id="User_Symbols_Constant_Name">

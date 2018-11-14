@@ -82,6 +82,11 @@
         <target state="new">String - Escape Character</target>
         <note />
       </trans-unit>
+      <trans-unit id="Symbol_Static">
+        <source>Symbol - Static</source>
+        <target state="new">Symbol - Static</target>
+        <note />
+      </trans-unit>
       <trans-unit id="User_Symbols_Constant_Name">
         <source>User Symbols - Constant Name</source>
         <target state="new">User Symbols - Constant Name</target>
