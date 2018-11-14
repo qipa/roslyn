@@ -872,4 +872,7 @@ Do you want to proceed?</value>
   <data name="Operator_Overload" xml:space="preserve">
     <value>Operator - Overload</value>
   </data>
+  <data name="Keyword_Control" xml:space="preserve">
+    <value>Keyword - Control</value>
+  </data>
 </root>
