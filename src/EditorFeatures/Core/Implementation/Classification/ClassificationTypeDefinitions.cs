@@ -320,5 +320,11 @@ namespace Microsoft.CodeAnalysis.Editor.Implementation.Classification
         internal readonly ClassificationTypeDefinition StaticSymbolTypeDefinition;
         #endregion
 
+        #region Operator - Overload Name
+        [Export]
+        [Name(ClassificationTypeNames.OperatorOverload)]
+        [BaseDefinition(PredefinedClassificationTypeNames.Operator)]
+        internal readonly ClassificationTypeDefinition OperatorOverloadTypeDefinition;
+        #endregion
     }
 }

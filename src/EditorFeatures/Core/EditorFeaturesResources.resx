@@ -832,6 +832,7 @@ Do you want to proceed?</value>
   </data>
   <data name="Symbol_Static" xml:space="preserve">
     <value>Symbol - Static</value>
+  </data>
   <data name="Invalid_assembly_name" xml:space="preserve">
     <value>Invalid assembly name</value>
   </data>
@@ -867,5 +868,8 @@ Do you want to proceed?</value>
   </data>
   <data name="User_Symbols_Property_Name" xml:space="preserve">
     <value>User Symbols - Property Name</value>
+  </data>
+  <data name="Operator_Overload" xml:space="preserve">
+    <value>Operator - Overload</value>
   </data>
 </root>

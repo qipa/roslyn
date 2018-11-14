@@ -89,6 +89,23 @@ namespace Microsoft.CodeAnalysis.Editor.Implementation.Classification
         }
 
         #endregion
+        #region Operator - Overload
+        [Export(typeof(EditorFormatDefinition))]
+        [ClassificationType(ClassificationTypeNames = ClassificationTypeNames.OperatorOverload)]
+        [BaseDefinition(PredefinedClassificationTypeNames.Operator)]
+        [Name(ClassificationTypeNames.OperatorOverload)]
+        [Order(After = PredefinedClassificationTypeNames.Operator)]
+        [UserVisible(true)]
+        [ExcludeFromCodeCoverage]
+        private class OperatorOverloadFormatDefinition : ClassificationFormatDefinition
+        {
+            private OperatorOverloadFormatDefinition()
+            {
+                this.DisplayName = EditorFeaturesResources.Operator_Overload;
+                this.IsBold = true;
+            }
+        }
+        #endregion
 
         #region User Types - Classes
         [Export(typeof(EditorFormatDefinition))]
